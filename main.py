@@ -15,11 +15,12 @@ import torchvision
 from torch.utils.data import Dataset, DataLoader
 import torchvision.transforms as transforms
 import torch.nn.functional as F
+from torch.optim import lr_scheduler
 
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import precision_score
 from sklearn.metrics import classification_report
-from sklearn.metrics import plot_confusion_matrix
+from sklearn.metrics import ConfusionMatrixDisplay
 from sklearn.metrics import f1_score
 from sklearn.metrics import confusion_matrix
 from sklearn.neighbors import KNeighborsClassifier as KNN
@@ -39,6 +40,8 @@ parser.add_argument('--epochs', type=int, default = 10, help='Number of Epochs o
 parser.add_argument('--batch_size', type=int, default = 32, help='Batch size for training')
 parser.add_argument('--learning_rate', type=float, default = 0.0001, help='Learning Rate')
 parser.add_argument('--stepLR', type=int, default=5, help='Step size for Step LR scheduler')
+parser.add_argument('--momentum', type=float, default=0.9, help='Momentum for the optimizer')
+
 args = parser.parse_args()
 
 DIR_PATH = args.data_directory  # enter directory path for dataset
